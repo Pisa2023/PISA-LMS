@@ -110,7 +110,7 @@ include('../config/dbcon.php');
                             <span class="time-left">10s</span>
                         </div>
                     </div>
-                        <div id="container">
+                        <div id="quiz-container">
                             <!-- questions and options will be displayed here -->
 
                         </div>
