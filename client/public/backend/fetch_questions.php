@@ -2,8 +2,8 @@
 session_start();
 include('../../config/dbcon.php'); // Include your database connection script
 
-if (isset($_GET['assessment_id']) && is_numeric($_GET['assessment_id'])) {
-    $assessmentID = (int) $_GET['assessment_id'];
+if (isset($_GET['assessment_id'])) {
+    $assessmentID = $_GET['assessment_id'];
 
     // Query to fetch questions and choices based on the assessment ID
     $query = "SELECT q.question_id, q.questionText, c.choice_id, c.choiceText, c.isCorrectChoice
@@ -38,15 +38,9 @@ if (isset($_GET['assessment_id']) && is_numeric($_GET['assessment_id'])) {
         $isCorrectChoice = $row['isCorrectChoice'];
 
         // Check if the question already exists in the quizData array
-        $existingQuestion = null;
-        foreach ($quizData as $index => $question) {
-            if ($question['id'] === $questionID) {
-                $existingQuestion = $index;
-                break;
-            }
-        }
+        $existingQuestion = array_search($questionID, array_column($quizData, 'id'));
 
-        if ($existingQuestion === null) {
+        if ($existingQuestion === false) {
             // Question not found, add it to the array
             $quizData[] = [
                 'id' => $questionID,
@@ -60,8 +54,8 @@ if (isset($_GET['assessment_id']) && is_numeric($_GET['assessment_id'])) {
         $quizData[$existingQuestion]['options'][] = $choiceText;
 
         // Set the correct answer for the question
-        if ($isCorrectChoice == 1) {
-            $quizData[$existingQuestion]['correct'][] = $choiceText;
+        if ($isCorrectChoice == 0) {
+            $quizData[$existingQuestion]['correct'] = $choiceText;
         }
     }
 
@@ -71,7 +65,7 @@ if (isset($_GET['assessment_id']) && is_numeric($_GET['assessment_id'])) {
     // Output the quiz data as JSON
     echo json_encode($quizData);
 } else {
-    echo 'Invalid or missing assessment ID.';
+    echo 'Assessment ID not provided.';
 }
 
 // Close the database connection
