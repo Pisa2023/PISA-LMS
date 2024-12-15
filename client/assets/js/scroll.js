@@ -15,8 +15,13 @@ scrollSlideHidden.forEach(el=> observer.observe(el))
 
 
 const loader = document.getElementById('preloader')
-function removeLoader(){
-    loader.style.display = 'none'
+function removeLoader() {
+    if (someCondition) {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.display = 'none';
+        }
+    }
 }
 
 function stopLoader(){

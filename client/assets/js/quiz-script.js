@@ -8,6 +8,7 @@ let scoreContainer = document.querySelector(".score-container");
 let userScore = document.getElementById("user-score");
 let startScreen = document.querySelector(".start-screen");
 let startButton = document.getElementById("start-button");
+let currentAssessment = null;
 let questionCount;
 let scoreCount = 0;
 let count = 11;
