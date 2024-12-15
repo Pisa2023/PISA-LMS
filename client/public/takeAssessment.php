@@ -110,11 +110,13 @@ include('../config/dbcon.php');
                             <span class="time-left">10s</span>
                         </div>
                     </div>
-                    <div id="container">
-                        <!-- questions and options will be displayed here -->
-                    </div>
-                    <button onclick="showNextPage()" id="next-button">Next</button>
-                    <button onclick="finishQuiz()" id="finish-button" style="display: none;">Finish</button>                </div>
+                        <div id="container">
+                            <!-- questions and options will be displayed here -->
+
+                        </div>
+                        <button onclick="showNextPage()" id="next-button">Next</button>
+                        <button onclick="finishQuiz()" id="finish-button" style="display: none;">Finish</button>               
+                </div>
             </div>
             <div class="col-6 d-flex justify-content-center" id="attachment-container">
                 <?php
@@ -144,7 +146,7 @@ include('../config/dbcon.php');
         <div class="card">
             <div class="card-body p-5">
                 <div class="score-container hide">
-                    <p><i>This is the feedback for CR548Q09 in English.</i></p>
+                    <!-- <p><i>This is the feedback for CR548Q09 in English.</i></p> -->
                     <br>
                     <div class="row">
                         <div class="col-6">

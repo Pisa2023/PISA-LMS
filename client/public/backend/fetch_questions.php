@@ -7,9 +7,9 @@ if (isset($_GET['assessment_id'])) {
 
     // Query to fetch questions and choices based on the assessment ID
     $query = "SELECT q.question_id, q.questionText, c.choice_id, c.choiceText, c.isCorrectChoice
-              FROM questions AS q
-              LEFT JOIN choices AS c ON q.question_id = c.questionID
-              WHERE q.assessmentID = ?";
+            FROM questions AS q
+            LEFT JOIN choices AS c ON q.question_id = c.questionID
+            WHERE q.assessmentID = ?";
 
     // Prepare the statement
     $stmt = mysqli_prepare($con, $query);
