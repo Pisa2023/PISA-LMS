@@ -81,7 +81,7 @@ const timerDisplay = () => {
     }, 1000);
 };
 
-let currentAssessment=null;
+
 
 function quizDisplay(questionCount) {
     let quizCards = document.querySelectorAll(".container-mid");
