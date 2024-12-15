@@ -80,7 +80,8 @@ const timerDisplay = () => {
         }
     }, 1000);
 };
-let currentAssessment;
+
+let currentAssessment=null;
 function quizDisplay(questionCount) {
     let quizCards = document.querySelectorAll(".container-mid");
     if (quizCards.length > questionCount) {
