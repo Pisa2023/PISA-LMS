@@ -86,27 +86,40 @@ const timerDisplay = () => {
 
 function quizDisplay(questionCount) {
     let quizCards = document.querySelectorAll(".container-mid");
+
     if (quizCards.length > questionCount) {
-        // Hide other cards
+        // Hide all cards
         quizCards.forEach((card) => {
             card.classList.add("hide");
         });
 
-        // Check the attachedFile property and create either a video or an image element
-        if (currentAssessment.attachedFile) {
+        // Display the current question card
+        quizCards[questionCount].classList.remove("hide");
+
+        // Check if currentAssessment exists and has an attachedFile
+        if (currentAssessment && currentAssessment.attachedFile) {
             let attachedFileElement;
-            if (currentAssessment.attachedFile.type === "video") {
-                attachedFileElement = document.createElement("video");
-                attachedFileElement.src = currentAssessment.attachedFile.url;
-                attachedFileElement.controls = true;
-            } else if (currentAssessment.attachedFile.type === "image") {
+
+            // Check if the attached file is an image
+            if (currentAssessment.attachedFile.type === "image") {
                 attachedFileElement = document.createElement("img");
                 attachedFileElement.src = currentAssessment.attachedFile.url;
-                attachedFileElement.alt = "Image";
-            }
+                attachedFileElement.alt = "Image"; // Optional: add an alt attribute
 
-        // Append the attached file element to the quiz card
-        quizCards[questionCount].appendChild(attachedFileElement);
+                // Log to check the image URL
+                console.log("Image URL: ", attachedFileElement.src);
+
+                // Ensure the image is visible and responsive
+                attachedFileElement.style.display = "block";
+                attachedFileElement.style.maxWidth = "100%";
+
+                // Append the image element to the quiz card
+                quizCards[questionCount].appendChild(attachedFileElement);
+            } else {
+                console.error("Attached file is not an image.");
+            }
+        } else {
+            console.log("No attached file found for this assessment.");
         }
     } else {
         console.error('Invalid questionCount:', questionCount);
