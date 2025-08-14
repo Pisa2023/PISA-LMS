@@ -100,16 +100,18 @@ include('elements/popup/question-details-popup.php');
                                 <?php
                                     $assessmentId = $_GET['assessment_id']; // Assuming it's included in the URL
 
-                                    $query = "SELECT q.question_id, q.questionText
-                                            FROM questions q
-                                            WHERE q.assessmentID = $assessmentId"; // Adjust the table and column names as needed
+                                    $query = "SELECT q.question_id, q.questionText, q.rationale
+                                    FROM questions q
+                                    WHERE q.assessmentID = $assessmentId";// Adjust the table and column names as needed
                                     
                                     $query_run = mysqli_query($con, $query);
                                     
                                     if (mysqli_num_rows($query_run) > 0) {
                                         foreach ($query_run as $row) {
                                     ?>
-                                        <button type="button" class="list-group-item list-group-item-action" data-questionId="<?= $row['question_id']?>" id="question-details-show-popup"><?=$row['questionText'];?></button>
+                                        <button type="button" class="list-group-item list-group-item-action" data-questionId="<?= $row['question_id']?>" 
+                                        data-rationale="<?= htmlspecialchars($row['rationale'], ENT_QUOTES) ?>"
+                                        id="question-details-show-popup"><?=$row['questionText'];?></button>
                                     <?php
                                     }
                                     } else {

@@ -70,6 +70,13 @@
                         </div>
                     </div>
                     <hr>
+                    <!-- Rationale/Explanation Section -->
+                    <div class="form-group mt-3 mb-5">
+                        <label for="explanation"><strong>Rationale / Explanation:</strong></label>
+                        <textarea class="form-control" placeholder="Explanation/rationale goes here" id="edit-explanation"
+                        name="explanation" readonly></textarea>
+                    </div>
+
 
                     <div class="d-flex justify-content-center align-items-end">
                         <!-- <button class="btn btn-primary" style="width:100px;margin-right: 0.5rem;">Edit</button> -->

@@ -6,7 +6,7 @@ if (isset($_GET['assessment_id'])) {
     $assessmentID = $_GET['assessment_id'];
 
     // Query to fetch questions and choices based on the assessment ID
-    $query = "SELECT q.question_id, q.questionText, c.choice_id, c.choiceText, c.isCorrectChoice
+    $query = "SELECT q.question_id, q.questionText, q.rationale, c.choice_id, c.choiceText, c.isCorrectChoice
             FROM questions AS q
             LEFT JOIN choices AS c ON q.question_id = c.questionID
             WHERE q.assessmentID = ?";
@@ -33,6 +33,7 @@ if (isset($_GET['assessment_id'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         $questionID = $row['question_id'];
         $questionText = $row['questionText'];
+        $rationale = $row['rationale'];
         $choiceID = $row['choice_id'];
         $choiceText = $row['choiceText'];
         $isCorrectChoice = $row['isCorrectChoice'];
@@ -47,6 +48,7 @@ if (isset($_GET['assessment_id'])) {
                 'question' => $questionText,
                 'options' => [],
                 'correct' => null,
+                'rationale' => $rationale,
             ];
             $existingQuestion = count($quizData) - 1;
         }

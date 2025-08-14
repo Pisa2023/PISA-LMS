@@ -926,9 +926,11 @@
                         return response.json();
                     })
                     .then(questionData => {
+                        console.log(questionData);
                         // Populate the form fields with the question data
                         document.getElementById('question_id').value = questionData.question_id;
                         document.getElementById('question').value = questionData.questionText;
+                        document.getElementById('edit-explanation').value = questionData.rationale || '';
                         
                         fetchChoices(questionId);
                         popup.classList.add('show');

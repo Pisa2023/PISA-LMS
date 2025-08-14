@@ -1,3 +1,4 @@
+
 <!-- new-user-form.php -->
 <div id="add-question-popup" class="popup">
     <div class="popup-content w-50 p-5">
@@ -63,6 +64,11 @@
                     </div>
                         <input type="text" name="choice[3]" class="form-control" aria-label="Text input with checkbox">
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="explanation">Explanation / Rationale</label>
+                <textarea class="form-control" name="explanation" id="explanation" rows="3" placeholder="Enter explanation or rationale here"></textarea>
             </div>
 
             <!-- Image input field (initially hidden) -->

@@ -43,6 +43,7 @@ function fetchQuestionsAndChoices(assessmentID) {
 nextBtn.addEventListener(
     "click",
     (displayNext = () => {
+        document.getElementById('rationale-box').style.display = 'none';
         //increment questionCount
         questionCount += 1;
         //if last question
@@ -64,24 +65,24 @@ nextBtn.addEventListener(
             //display quiz
             quizDisplay(questionCount);
             count = 11;
-            clearInterval(countdown);
-            timerDisplay();
+            // clearInterval(countdown);
+            // timerDisplay();
         }
     })
 );
 
 //Timer
-const timerDisplay = () => {
-    countdown = setInterval(() => {
-        count--;
-        timeLeft.innerHTML = `${count}s`;
-        if (count == 0) {
-            clearInterval(countdown);
-            displayNext();
-        }
-    }, 1000);
-};
-
+// const timerDisplay = () => {
+//     countdown = setInterval(() => {
+//         count--;
+//         timeLeft.innerHTML = `${count}s`;
+//         if (count == 0) {
+//             clearInterval(countdown);
+//             displayNext();
+//         }
+//     }, 1000);
+// };
+// 
 
 
 function quizDisplay(questionCount) {
@@ -186,11 +187,15 @@ function checker(userOption) {
     }
 
     //clear interval(stop timer)
-    clearInterval(countdown);
-    //disable all options
+    // clearInterval(countdown);
+    // //disable all options
     options.forEach((element) => {
         element.disabled = true;
     });
+
+    const rationaleBox = document.getElementById('rationale-box');
+    rationaleBox.style.display = 'block';
+    rationaleBox.textContent = quizArray[questionCount].rationale || "No explanation provided.";
 }
 
 function submitQuiz() {
@@ -224,8 +229,8 @@ function initial() {
     questionCount = 0;
     scoreCount = 0;
     count = 11;
-    clearInterval(countdown);
-    timerDisplay();
+    // clearInterval(countdown);
+    // timerDisplay();
     quizCreator();
     quizDisplay(questionCount);
 }

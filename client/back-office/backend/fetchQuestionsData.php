@@ -5,7 +5,7 @@ if (isset($_GET['question_id'])) {
     $question_id = $_GET['question_id'];
 
     // Perform a database query to fetch question data based on $question_id
-    $query = "SELECT q.question_id, q.questionText
+    $query = "SELECT q.question_id, q.questionText, q.rationale
               FROM questions q
               WHERE q.question_id = $question_id"; // Filter by question_id
     $result = mysqli_query($con, $query);

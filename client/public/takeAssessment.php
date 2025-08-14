@@ -104,20 +104,19 @@ include('../config/dbcon.php');
                         <div class="number-of-count">
                             <span class="number-of-question">1 of 3 questions</span>
                         </div>
-                        <div class="timer-div">
-                            <img src="https://uxwing.com/wp-content/themes/uxwing/download/time-and-date/stopwatch-icon.png"
-                                width="20px" />
-                            <span class="time-left">10s</span>
-                        </div>
+
                     </div>
                         <div id="container">
                             <!-- questions and options will be displayed here -->
 
                         </div>
+                        <!-- RATIONALE BOX -->
+                        <div id="rationale-box" class="alert alert-info mt-3 mb-3" style="display:none;"></div>
                         <button onclick="showNextPage()" id="next-button">Next</button>
                         <button onclick="finishQuiz()" id="finish-button" style="display: none;">Finish</button>               
                 </div>
             </div>
+            
             <div class="col-6 d-flex justify-content-center" id="attachment-container">
                 <?php
                 if (!empty($attach_file)) {

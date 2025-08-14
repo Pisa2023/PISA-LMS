@@ -4,6 +4,7 @@ include('../security/authentication.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $assessmentId = $_POST["assessment_id"];
     $questionText = $_POST["question"];
+    $explanation = $_POST["explanation"] ?? '';
     $imageAttachment = "";
     $videoAttachment = "";
     
@@ -22,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert data into the "questions" table
-    $sql = "INSERT INTO questions (assessmentID, questionText, image_attachment, video_attachment) 
-            VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO questions (assessmentID, questionText, image_attachment, video_attachment, rationale) 
+            VALUES (?, ?, ?, ?, ?)";
     $stmt = $con->prepare($sql);
-    $stmt->bind_param("isss", $assessmentId, $questionText, $imageAttachment, $videoAttachment);
+    $stmt->bind_param("issss", $assessmentId, $questionText, $imageAttachment, $videoAttachment, $explanation);
 
     if ($stmt->execute()) {
         // Get the last inserted question ID
